@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ma Position en Direct</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #2E3192, #f39c12);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    canvas {
+      border: 2px solid white;
+      border-radius: 10px;
+      background: #fff;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 15px;
+      background: #f39c12;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #2E3192;
+      transform: scale(1.1);
+    }
+
+    .coords {
+      margin-top: 10px;
+      background: rgba(255,255,255,0.2);
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📍 Ma position actuelle</h1>
+  <canvas id="mapCanvas" width="400" height="300"></canvas>
+  <button onclick="getLocation()">Mettre à jour ma position</button>
+  <div class="coords" id="coordonnees">Aucune position détectée</div>
+
+  <script>
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+    const coordonnees = document.getElementById('coordonnees');
+
+    // Fonction pour dessiner le point sur le Canvas
+    function drawPoint(lat, lon) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "lightblue";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Conversion simplifiée lat/lon → position canvas
+      const x = (lon + 180) * (canvas.width / 360);
+      const y = (90 - lat) * (canvas.height / 180);
+
+      ctx.beginPath();
+      ctx.arc(x, y, 8, 0, 2 * Math.PI);
+      ctx.fillStyle = "red";
+      ctx.fill();
+
+      ctx.font = "14px Arial";
+      ctx.fillStyle = "black";
+      ctx.fillText("Vous êtes ici !", x + 10, y - 10);
+
+      ctx.closePath();
+    }
+
+    // Fonction pour enregistrer dans le stockage local
+    function savePosition(lat, lon) {
+      localStorage.setItem('latitude', lat);
+      localStorage.setItem('longitude', lon);
+    }
+
+    // Récupération depuis le stockage local si disponible
+    window.onload = function() {
+      const lat = localStorage.getItem('latitude');
+      const lon = localStorage.getItem('longitude');
+      if (lat && lon) {
+        coordonnees.textContent = `Dernière position : ${lat}, ${lon}`;
+        drawPoint(parseFloat(lat), parseFloat(lon));
+      }
+    };
+
+    // Fonction principale de géolocalisation
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          const lat = pos.coords.latitude.toFixed(4);
+          const lon = pos.coords.longitude.toFixed(4);
+
+          coordonnees.textContent = `Latitude : ${lat}, Longitude : ${lon}`;
+          savePosition(lat, lon);
+          drawPoint(parseFloat(lat), parseFloat(lon));
+        }, (error) => {
+          coordonnees.textContent = "Erreur de géolocalisation.";
+        });
+      } else {
+        coordonnees.textContent = "La géolocalisation n’est pas supportée par ce navigateur.";
+      }
+    }
+  </script>
+</body>
+</html>

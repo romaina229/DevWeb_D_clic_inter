@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma Position en Direct</title>
+  <link rel="stylesheet" href="./asset/style1.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+
+  <h1>Ma position actuelle</h1>
+  <!-- Conteneur pour la carte Leaflet -->
+  <div id="map"></div>
+  <button onclick="getLocation()">Mettre à jour ma position</button>
+  <div class="coords" id="coordonnees">Aucune position détectée</div>
+  <div>Vous êtes à <span id="position"></span></div>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./js/js1.js"></script>
+</body>
+</html>
