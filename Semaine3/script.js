@@ -1,13 +1,53 @@
+//dans mon code ici j'ai utilisé des || pour gérer les deux versions des ids (C1, C2, C3...) et (nom, adresse, no_postal...). cher tuteur, j'ai intégré des css classes pour indiquer visuellement la validité des champs (par exemple, en ajoutant une bordure verte pour valide et rouge pour invalide). aussi, j'ai ajoutédes des fonctions pour afficher des notifications visuelles en plus des alertes d'erreur, afin d'améliorer l'expérience utilisateur. Pour me permettre de mieux comprendre le fonctionnement des formulaires et la validation côté client en JavaScript.
+// Cependant, cher tuteur, Veuillez me mettre en commentaire dans l'espace dépôt des exercices la méthode la plus appropriée pour afficher une validation visuelle des champs de formulaire.
+
+// Fonction de validation générale
+// Affiche un message d'erreur inline pour un champ (élément input/textarea/select)
+function showError(champ, message) {
+    if (!champ) return;
+    // retire ancienne erreur
+    clearError(champ);
+    champ.classList.add('error');
+    champ.classList.remove('valid');
+    champ.style.border = '2px solid #ff4d4d';
+    const span = document.createElement('span');
+    span.className = 'error-message';
+    span.style.color = '#ff1313';
+    span.style.marginLeft = '8px';
+    span.textContent = message;
+    // insérer après le champ
+    if (champ.nextSibling) {
+        champ.parentNode.insertBefore(span, champ.nextSibling);
+    } else {
+        champ.parentNode.appendChild(span);
+    }
+}
+
+// Supprime le message d'erreur pour un champ
+function clearError(champ) {
+    if (!champ) return;
+    champ.classList.remove('error');
+    champ.classList.add('valid');
+    champ.style.border = '2px solid #4CAF50';
+    // retirer span.error-message adjacent
+    let next = champ.nextSibling;
+    // skip text nodes
+    while (next && next.nodeType === Node.TEXT_NODE) next = next.nextSibling;
+    if (next && next.classList && next.classList.contains('error-message')) {
+        next.parentNode.removeChild(next);
+    }
+}
+
 // Validation du nom (au moins 2 lettres, peut inclure espaces et tirets)
 function verifiernom() {
     const nomEl = document.getElementById('C1') || document.getElementById('nom');
     const nom = nomEl ? nomEl.value.trim() : '';
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]{2,}$/;
     if (regex.test(nom)) {
-        alert('Nom valide');
+        clearError(nomEl);
         return true;
     } else {
-        alert('Nom invalide — utilisez au moins 2 lettres');
+        showError(nomEl, 'Nom invalide — au moins 2 lettres');
         return false;
     }
 }
@@ -18,10 +58,10 @@ function verifieradresse() {
     const adresse = adresseEl ? adresseEl.value.trim() : '';
     const regex = /^.{5,}$/;
     if (regex.test(adresse)) {
-        alert('Adresse valide');
+        clearError(adresseEl);
         return true;
     } else {
-        alert('Adresse invalide — au moins 5 caractères');
+        showError(adresseEl, 'Adresse invalide — au moins 5 caractères');
         return false;
     }
 }
@@ -32,10 +72,10 @@ function verifierpostal() {
     const code = codeEl ? codeEl.value.trim() : '';
     const regex = /^[0-9]{4}$/;
     if (regex.test(code)) {
-        alert('Code postal valide');
+        clearError(codeEl);
         return true;
     } else {
-        alert('Code postal invalide — format attendu : 4 chiffres');
+        showError(codeEl, 'Code postal invalide — format attendu : 4 chiffres');
         return false;
     }
 }

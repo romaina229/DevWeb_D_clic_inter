@@ -27,17 +27,17 @@
 <TR>
   <TD><B>Nom / Prénom</B>
   <TD>	<INPUT id="C1" TYPE=TEXT NAME=nom SIZE=50 MAXLENGTH=80 onChange="verifiernom()">
-  <TD id="T2"></TD>
+  <TD id="T2"></TD><span onchange="clearErrorMessage()" class="error-message"></span>
 <TR>
   <TD><B>Adresse</B>
   <TD>	<TEXTAREA id="C2" NAME=adresse COLS=50 ROWS=2 WRAP=PHYSICAL onChange="verifieradresse()"></TEXTAREA>
-  <TD id="T3"></TD>
-  
+  <TD id="T3"></TD><span onchange="clearErrorMessage()" class="error-message"></span>
+
 <TR>
   <TD><B>No postal / Localité</B>
   <TD>	<INPUT id="C3" TYPE=TEXT NAME=no_postal Size=5 MAXLENGTH=4 onChange="verifierpostal()">
 	<INPUT  id="C4" TYPE=TEXT NAME=localite SIZE=20 MAXLENGTH=80 VALUE="">
-<TD id="T4"></TD>
+<TD id="T4"></TD><span onchange="clearErrorMessage()" class="error-message"></span>
 <TR>
   <TD><B>Pays</B>
   <TD>	<SELECT id="lepays" NAME=pays>
@@ -73,7 +73,7 @@
 
 <CENTER><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="10" WIDTH="95%">
 <TR><TH>
-<INPUT TYPE=button VALUE="Soumettre formulaire" onclick=afficher()>  
+<INPUT TYPE=button VALUE="Soumettre formulaire" onclick=afficher()>
 <INPUT TYPE=button VALUE="Vérification formulaire" onclick=forme()>
 <INPUT TYPE=RESET VALUE="Effacer">
 <input type=button value="Enregistrer formulaire" onclick=enregistre()>

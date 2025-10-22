@@ -19,3 +19,16 @@ input [TYPE=button]:focus {
     text-decoration-color: blue;
 
 }
+
+/* Styles pour la validation */
+.error {
+    box-shadow: 0 0 0 3px rgba(255,77,77,0.08);
+}
+.valid {
+    box-shadow: 0 0 0 3px rgba(76,175,80,0.08);
+}
+.error-message {
+    color: #ff1313;
+    font-size: 0.9em;
+    margin-left: 6px;
+}
