@@ -12,11 +12,15 @@ input[type=text]:focus {
     background-color: lightblue;
 }
 
-input [TYPE=button]:focus {
+ input [type=button] :focus {
+    display: grid;
+    
+    align-items: center;
+    justify-content: center;
     background-color: azure;
     gap: 20px;
     column-gap: 15px;
-    text-decoration-color: blue;
+   background: 135dg (#000 blue);
 
 }
 
@@ -30,5 +34,11 @@ input [TYPE=button]:focus {
 .error-message {
     color: #ff1313;
     font-size: 0.9em;
-    margin-left: 6px;
+    margin-left: 10px;
+    display: inline-block;
+    white-space: nowrap; /* empêche le retour à la ligne du message */
+    vertical-align: middle; /* aligne avec le champ */
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

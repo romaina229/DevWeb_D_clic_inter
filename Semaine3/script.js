@@ -1,5 +1,9 @@
 //dans mon code ici j'ai utilisé des || pour gérer les deux versions des ids (C1, C2, C3...) et (nom, adresse, no_postal...). cher tuteur, j'ai intégré des css classes pour indiquer visuellement la validité des champs (par exemple, en ajoutant une bordure verte pour valide et rouge pour invalide). aussi, j'ai ajoutédes des fonctions pour afficher des notifications visuelles en plus des alertes d'erreur, afin d'améliorer l'expérience utilisateur. Pour me permettre de mieux comprendre le fonctionnement des formulaires et la validation côté client en JavaScript.
+
 // Cependant, cher tuteur, Veuillez me mettre en commentaire dans l'espace dépôt des exercices la méthode la plus appropriée pour afficher une validation visuelle des champs de formulaire.
+
+// cher tuteur j'ai faille solliciter votre aide pour la recupération des villes suivant le critère 3000 ou 4000 pour le choix respectivement des ville 1 ou ville 2. justement je n'ai pas fait attention à id=C4 de la localité.
+
 
 // Fonction de validation générale
 // Affiche un message d'erreur inline pour un champ (élément input/textarea/select)
@@ -38,30 +42,30 @@ function clearError(champ) {
     }
 }
 
-// Validation du nom (au moins 2 lettres, peut inclure espaces et tirets)
+// Validation du nom (8 à 20 lettres, espaces et traits d'union autorisés)
 function verifiernom() {
     const nomEl = document.getElementById('C1') || document.getElementById('nom');
     const nom = nomEl ? nomEl.value.trim() : '';
-    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]{2,}$/;
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]{8,20}$/;
     if (regex.test(nom)) {
         clearError(nomEl);
         return true;
     } else {
-        showError(nomEl, 'Nom invalide — au moins 2 lettres');
+        showError(nomEl, 'Nom invalide — au moins 8 caractères et 20 caractères au plus');
         return false;
     }
 }
 
-// Validation de l'adresse (au moins 5 caractères)
+// Validation de l'adresse (au moins 20 caractères)
 function verifieradresse() {
     const adresseEl = document.getElementById('C2') || document.getElementById('adresse');
     const adresse = adresseEl ? adresseEl.value.trim() : '';
-    const regex = /^.{5,}$/;
+    const regex = /^.{20,}$/;
     if (regex.test(adresse)) {
         clearError(adresseEl);
         return true;
     } else {
-        showError(adresseEl, 'Adresse invalide — au moins 5 caractères');
+        showError(adresseEl, 'Adresse invalide — au moins 20 caractères');
         return false;
     }
 }
@@ -70,18 +74,25 @@ function verifieradresse() {
 function verifierpostal() {
     const codeEl = document.getElementById('C3') || document.getElementById('no_postal');
     const code = codeEl ? codeEl.value.trim() : '';
-    const regex = /^[0-9]{4}$/;
-    if (regex.test(code)) {
+    // Accept seulement les valeurs exactes 3000 ou 4000
+    const localiteEl = document.getElementById('C4') || document.getElementById('localite');
+    if (code === '3000') {
+        if (localiteEl) localiteEl.value = 'ville1 : Abomey-Calavi';
+        clearError(codeEl);
+        return true;
+    } else if (code === '4000') {
+        if (localiteEl) localiteEl.value = 'ville2 : Cotonou';
         clearError(codeEl);
         return true;
     } else {
-        showError(codeEl, 'Code postal invalide — format attendu : 4 chiffres');
+        if (localiteEl) localiteEl.value = '';
+        showError(codeEl, 'Code postal invalide — la valeur doit être 3000 ou 4000');
         return false;
     }
 }
 
 // Ajoute le pays saisi dans la liste <select id="lepays"> et affiche un message
-function myFunction() {
+function ajouterPays() {
     const input = document.getElementById('C5');
     const select = document.getElementById('lepays');
     if (!input || !select) return;
@@ -93,8 +104,8 @@ function myFunction() {
     const option = document.createElement('option');
     option.text = value;
     option.value = value;
-    select.add(option);
-    alert('Pays ajouté : ' + value);
+    select.add(option);  
+    alert('Pays ajouté : ' + value); 
     input.value = '';
 }
 
@@ -110,13 +121,13 @@ function afficherSelection() {
 function afficher() {
     const form = document.forms[0];
     if (!form) return;
-    const civilite = form.civilite ? form.civilite.value : '';
+    const civilite = form.civilite ? form.civilite.value : 'Bonjour';
     const nom = form.nom ? form.nom.value : '';
     const adresse = form.adresse ? form.adresse.value : '';
     const no_postal = form.no_postal ? form.no_postal.value : '';
     const localite = form.localite ? form.localite.value : '';
     const pays = form.pays ? form.pays.value : '';
-    alert(`Résumé:\nCivilité: ${civilite}\nNom: ${nom}\nAdresse: ${adresse}\nCode postal: ${no_postal}\nLocalité: ${localite}\nPays: ${pays}`);
+    alert(`Résumé:\n Bonjour ${civilite} ${nom} \nAdresse: ${adresse}\nCode postal: ${no_postal}\nLocalité: ${localite}\nPays: ${pays}`);
 }
 
 // Fonction de vérification globale (pour bouton Vérification formulaire)
