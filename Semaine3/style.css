@@ -12,17 +12,6 @@ input[type=text]:focus {
     background-color: lightblue;
 }
 
- input [type=button] :focus {
-    display: grid;
-    
-    align-items: center;
-    justify-content: center;
-    background-color: azure;
-    gap: 20px;
-    column-gap: 15px;
-   background: 135dg (#000 blue);
-
-}
 
 /* Styles pour la validation */
 .error {
