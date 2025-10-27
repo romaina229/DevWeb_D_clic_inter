@@ -3,6 +3,7 @@ input[type=text ] {
     margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid #555;
+    border-radius: 4px;
     outline: none;
 }
 textarea:focus {
@@ -12,10 +13,21 @@ input[type=text]:focus {
     background-color: lightblue;
 }
 
+.formul {
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(47, 47, 247);
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
+    font-style: oblique;
+    border: 2px solid #555;
+    border-radius: 15px;
+}
 
 /* Styles pour la validation */
 .error {
     box-shadow: 0 0 0 3px rgba(255,77,77,0.08);
+    border-radius: 3px;
 }
 .valid {
     box-shadow: 0 0 0 3px rgba(76,175,80,0.08);
@@ -30,4 +42,4 @@ input[type=text]:focus {
     max-width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+} 

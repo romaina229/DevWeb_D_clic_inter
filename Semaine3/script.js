@@ -17,7 +17,7 @@ function showError(champ, message) {
     const span = document.createElement('span');
     span.className = 'error-message';
     span.style.color = '#ff1313';
-    span.style.marginLeft = '8px';
+    span.style.marginLeft = '10px';
     span.textContent = message;
     // insérer après le champ
     if (champ.nextSibling) {
