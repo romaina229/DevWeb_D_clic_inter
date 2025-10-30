@@ -41,9 +41,10 @@ if ($exo == 1) {
     echo "Bonjour, monde !<br>";
 
     echo "<h3>2. Variables et opérateurs</h3>";
+    $civilite = Mr
     $nom = "Romain";
-    $age = 25;
-    echo "Je m'appelle $nom et j'ai $age ans.<br>";
+    $age = 31;
+    echo "Je m'appelle $civilite. $nom et j'ai $age ans.<br>";
     $annee_naissance = date("Y") - $age;
     echo "Je suis né en $annee_naissance.<br>";
 
