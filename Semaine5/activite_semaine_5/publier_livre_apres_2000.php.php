@@ -1,4 +1,5 @@
 <?php
+// 6.1 - Livres après 2000
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
@@ -8,16 +9,19 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $stmt = $conn->prepare("SELECT titre, annee_publication FROM livres WHERE annee_publication > 2000");
+    $sql = "SELECT titre, annee_publication FROM livres WHERE annee_publication > 2000 ORDER BY annee_publication";
+    $stmt = $conn->prepare($sql);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     echo "<h2>Livres publiés après 2000</h2>";
     echo "<ul>";
-    foreach($result as $row) {
-        echo "<li>" . $row['titre'] . " (" . $row['annee_publication'] . ")</li>";
+    foreach ($result as $row) {
+        echo "<li><strong>" . htmlspecialchars($row['titre']) . "</strong> (" . htmlspecialchars($row['annee_publication']) . ")</li>";
     }
     echo "</ul>";
+    
 } catch(PDOException $e) {
     echo "Erreur: " . $e->getMessage();
 }
