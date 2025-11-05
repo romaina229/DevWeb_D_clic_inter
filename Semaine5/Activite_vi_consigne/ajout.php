@@ -47,7 +47,7 @@ echo '</div>';
 echo '<div class="form-group">';
 echo '<label for="image">Nom du fichier image</label>';
 echo '<input type="text" id="image" name="image" placeholder="Ex: livre1.jpg">';
-echo '<small style="color: #666;">Placez l\'image dans le sous-dossier "images/" du dossier des scripts</small>';
+echo '<small style="color: #666;">Placez l\'image dans le dossier "images/"</small>';
 echo '</div>';
 
 echo '</div>';

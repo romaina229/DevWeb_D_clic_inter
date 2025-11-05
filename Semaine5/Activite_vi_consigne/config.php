@@ -59,7 +59,6 @@ function getHeader($title) {
                 padding: 40px;
             }
             .card {
-                text-align: center;
                 background: #f8f9fa;
                 border-radius: 10px;
                 padding: 25px;
@@ -215,7 +214,7 @@ function getNavigation() {
             <a href="jules_verne.php" class="btn">Jules Verne</a>
             <a href="update_livre.php" class="btn">Mise à jour</a>
             <a href="delete_romans.php" class="btn btn-danger">Suppression</a>
-            <a href="ajout.php" class="btn btn-danger">Ajouter</a>
+            <a href="ajout.php" class="btn">Ajouter</a>
             <a href="livres_apres_2000.php" class="btn">Livres après 2000</a>
             <a href="tous_les_livres.php" class="btn">Tous les livres</a>
             <a href="nombre_livres.php" class="btn">Statistiques</a>

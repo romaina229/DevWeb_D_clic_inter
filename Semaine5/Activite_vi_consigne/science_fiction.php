@@ -23,7 +23,7 @@ try {
         foreach ($result as $row) {
             echo '<div style="background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">';
             echo '<div style="font-size: 2em; margin-bottom: 10px;">🖼️</div>';
-            echo '<strong>' . htmlspecialchars($row['image']) . '</strong>';
+            echo '<strong>'. htmlspecialchars($row['image']) . '</strong>';
             echo '</div>';
         }
         echo '</div>';
