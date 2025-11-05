@@ -59,6 +59,7 @@ function getHeader($title) {
                 padding: 40px;
             }
             .card {
+                text-align: center;
                 background: #f8f9fa;
                 border-radius: 10px;
                 padding: 25px;
@@ -196,7 +197,8 @@ function getHeader($title) {
 function getFooter() {
     return '
             <div style="background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px;">
-                <p>&copy; 2024 Bibliothèque - Tous droits réservés</p>
+                <p>&copy; 2025 Bibliothèque - Tous droits réservés</p>
+                <p>Développé par Romain A.</p>
             </div>
         </div>
     </body>

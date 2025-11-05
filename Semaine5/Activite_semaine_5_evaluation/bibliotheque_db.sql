@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 05 nov. 2025 à 00:12
+-- Généré le :  mer. 05 nov. 2025 à 14:05
 -- Version du serveur :  5.7.17
 -- Version de PHP :  5.6.30
 
@@ -42,18 +42,13 @@ CREATE TABLE `livres` (
 --
 
 INSERT INTO `livres` (`id`, `titre`, `auteur`, `annee_publication`, `categorie`, `image`) VALUES
-(1, 'Vingt mille lieues sous les mers', 'Jules Verne', 1870, 'Science-fiction', 'vingt_mille_lieues.jpg'),
-(2, 'Le Tour du monde en 80 jours', 'Jules Verne', 1872, 'Aventure', 'l_etranger.jpg'),
-(3, 'Fondation', 'Isaac Asimov', 1951, 'Science-fiction', 'fondation.jpg'),
-(4, 'Vingt mille lieues sous les mers', 'Jules Verne', 1870, 'Science-fiction', 'vingt_mille_lieues.jpg'),
-(5, 'Dune', 'Frank Herbert', 1965, 'Science-fiction', 'dune.jpg'),
-(6, 'le petit prince', 'Frank Herbert', 1965, 'Science-fiction', 'le_petit_prince.jpg'),
-(7, 'Fondation', 'Isaac Asimov', 1951, 'Science-fiction', 'fondation.jpg'),
-(8, 'Les Trois Mousquetaires', 'Alexandre Dumas', 1844, 'Romans historiques', 'trois_mousquetaires.jpg'),
-(9, '1984', 'George Orwell', 1949, 'Dystopie', '1984.jpg'),
-(10, 'Harry Potter à l école des sorciers', 'J.K. Rowling', 2001, 'Fantasy', 'harry_potter.jpg'),
-(11, 'Fondation', 'Lifero GUEKPON', 2025, 'PoÃ©sie', 'les_miserabble.jpg'),
-(12, 'Fondation', 'Lifero GUEKPON', 2025, 'PoÃ©sie', 'les_miserabble.jpg');
+(1, 'Vingt mille lieues sous les mers', 'Jules Verne', 1869, 'Science-fiction', 'vingt_mille_lieues.jpeg'),
+(2, 'Dune', 'Frank Herbert', 1965, 'Science-fiction', 'dune.jpeg'),
+(3, 'Fondation', 'Isaac Asimov', 1951, 'Science-fiction', 'fondation.jpeg'),
+(4, 'Les Trois Mousquetaires', 'Alexandre Dumas', 1844, 'Romans historiques', 'trois_mousquetaires.jpeg'),
+(5, '1984', 'George Orwell', 1949, 'Dystopie', '1984.jpeg'),
+(6, 'Le Tour du monde en 80 jours', 'Jules Verne', 1872, 'Aventure', 'tour_monde.jpeg'),
+(7, 'Harry Potter à l\'école des sorciers', 'J.K. Rowling', 2001, 'Fantasy', 'harry_potter.jpg');
 
 --
 -- Index pour les tables déchargées
@@ -73,7 +68,7 @@ ALTER TABLE `livres`
 -- AUTO_INCREMENT pour la table `livres`
 --
 ALTER TABLE `livres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
