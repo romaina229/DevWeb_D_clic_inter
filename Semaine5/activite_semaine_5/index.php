@@ -120,6 +120,11 @@
                 <p>Liste de toutes les catégories distinctes disponibles</p>
                 <a href="categories_distinctes_diponibles.php" class="btn">Explorer</a>
             </div>
+            <div class="nav-card">
+                <h3>Ajouter des livres</h3>
+                <p>Formulaire pour ajouter de nouveaux livres à la bibliothèque</p>
+                <a href="ajoute.php" class="btn">Ajouter</a>
+            </div>
         </div>
 
         <div class="content-area">
@@ -131,6 +136,7 @@
                 <ul style="columns: 2; list-style-type: none; color: #718096;">
                     <li style="margin-bottom: 10px;">✅ Consultation par catégorie</li>
                     <li style="margin-bottom: 10px;">✅ Recherche par auteur</li>
+                    <li style="margin-bottom: 10px;">✅ Ajout de nouveaux livres</li>
                     <li style="margin-bottom: 10px;">✅ Mise à jour des informations</li>
                     <li style="margin-bottom: 10px;">✅ Suppression de données</li>
                     <li style="margin-bottom: 10px;">✅ Filtrage par année</li>
