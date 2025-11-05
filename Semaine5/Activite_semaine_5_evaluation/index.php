@@ -120,11 +120,6 @@
                 <p>Liste de toutes les catégories distinctes disponibles</p>
                 <a href="categories_distinctes_diponibles.php" class="btn">Explorer</a>
             </div>
-            <div class="nav-card">
-                <h3>Ajouter des livres</h3>
-                <p>Formulaire pour ajouter de nouveaux livres à la bibliothèque</p>
-                <a href="ajoute.php" class="btn">Ajouter</a>
-            </div>
         </div>
 
         <div class="content-area">
