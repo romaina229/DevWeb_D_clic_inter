@@ -5,6 +5,27 @@ session_start();
 
 $lecteur_id = 1; // En attendant l'authentification
 
+// Traitement de l'ajout à la liste de lecture
+if (isset($_GET['add_to_wishlist'])) {
+    $book_id = $_GET['book_id'];
+    
+    try {
+        // Vérifier si déjà dans la liste
+        $check_stmt = $pdo->prepare("SELECT * FROM liste_lecture WHERE id_livre = ? AND id_lecteur = ?");
+        $check_stmt->execute([$book_id, $lecteur_id]);
+        
+        if ($check_stmt->rowCount() === 0) {
+            $insert_stmt = $pdo->prepare("INSERT INTO liste_lecture (id_livre, id_lecteur, date_emprunt) VALUES (?, ?, CURDATE())");
+            $insert_stmt->execute([$book_id, $lecteur_id]);
+            $success = "Livre ajouté à votre liste de lecture !";
+        } else {
+            $info = "Ce livre est déjà dans votre liste de lecture";
+        }
+    } catch (PDOException $e) {
+        $error = "Erreur : " . $e->getMessage();
+    }
+}
+
 // Récupérer la liste de lecture
 try {
     $stmt = $pdo->prepare("SELECT l.*, ll.date_emprunt, ll.date_retour, ll.id as wishlist_id 
@@ -61,7 +82,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_wishlist'
         .btn { display: inline-block; background: #e74c3c; color: white; padding: 0.5rem 1rem; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; }
         .alert { padding: 1rem; margin: 1rem 0; border-radius: 4px; }
         .alert-success { background: #d4edda; color: #155724; }
+        .alert-info { background: #d1ecf1; color: #0c5460; }
         .alert-error { background: #f8d7da; color: #721c24; }
+        .footer { background-color: #2c3e50; }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            }
+
+            .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+            }
+
+            @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #667eea;
+                width: 100%;
+                padding: 20px;
+				
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -69,6 +127,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_wishlist'
         <div class="container">
             <nav>
                 <div class="logo">Bibliothèque en Ligne</div>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+                </div>
                 <ul class="nav-links">
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="wishlist.php">Ma liste de lecture</a></li>
@@ -83,6 +146,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_wishlist'
         
         <?php if (isset($success)): ?>
             <div class="alert alert-success"><?php echo $success; ?></div>
+        <?php endif; ?>
+        
+        <?php if (isset($info)): ?>
+            <div class="alert alert-info"><?php echo $info; ?></div>
         <?php endif; ?>
         
         <?php if (isset($error)): ?>
@@ -109,5 +176,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_wishlist'
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
-</body>
+    <div class="footer"><?php include 'footer.php'; ?></div>
+    
+</body> 
+    <script>
+	//afficher le menu toggle
+            function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+            }
+	</script>
 </html>

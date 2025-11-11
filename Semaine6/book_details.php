@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
         .alert { padding: 1rem; margin: 1rem 0; border-radius: 4px; }
         .alert-success { background: #d4edda; color: #155724; }
         .alert-info { background: #d1ecf1; color: #0c5460; }
+        .footer {background-color: #2c3e50; }
 		 .menu-toggle {
             display: none;
             cursor: pointer;
@@ -152,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
             </div>
         </div>
     </div>
-	
+	<div class="footer"><?php include 'footer.php'; ?></div>
 </body>
 	<script>
 	//afficher le menu toggle

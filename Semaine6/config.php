@@ -4,8 +4,8 @@
 // Paramètres de connexion
 $host = 'localhost';
 $dbname = 'bibliotheque';
-$username = 'root'; // Remplacez par votre utilisateur MySQL
-$password = ''; // Remplacez par votre mot de passe MySQL
+$username = 'root';
+$password = '';
 
 
 // Options PDO
